@@ -3,7 +3,8 @@
 
 use esp_backtrace as _;
 use esp_hal::{
-    clock::ClockControl, peripherals::Peripherals, prelude::*, rng::Rng, systimer::SystemTimer,
+    clock::ClockControl, peripherals::Peripherals, prelude::*, rng::Rng, system::SystemControl,
+    timer::systimer::SystemTimer,
 };
 use esp_println::println;
 use esp_wifi::wifi;
@@ -12,8 +13,7 @@ use smoltcp::iface::SocketStorage;
 #[entry]
 fn main() -> ! {
     let peripherals = Peripherals::take();
-    let system = peripherals.SYSTEM.split();
-
+    let system = SystemControl::new(peripherals.SYSTEM);
     let clocks = ClockControl::max(system.clock_control).freeze();
 
     let timer = SystemTimer::new(peripherals.SYSTIMER).alarm0;
@@ -21,7 +21,7 @@ fn main() -> ! {
         esp_wifi::EspWifiInitFor::Wifi,
         timer,
         Rng::new(peripherals.RNG),
-        system.radio_clock_control,
+        peripherals.RADIO_CLK,
         &clocks,
     )
     .unwrap();

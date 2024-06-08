@@ -4,7 +4,7 @@
 use esp_backtrace as _;
 use esp_hal::{
     clock::ClockControl, delay::Delay, peripherals::Peripherals, prelude::*, rng::Rng,
-    systimer::SystemTimer,
+    system::SystemControl, timer::systimer::SystemTimer,
 };
 use esp_println::println;
 use esp_wifi::{wifi, wifi_interface::WifiStack};
@@ -16,7 +16,7 @@ const PASSWORD: &str = env!("PASSWORD");
 #[entry]
 fn main() -> ! {
     let peripherals = Peripherals::take();
-    let system = peripherals.SYSTEM.split();
+    let system = SystemControl::new(peripherals.SYSTEM);
 
     let clocks = ClockControl::max(system.clock_control).freeze();
     let delay = Delay::new(&clocks);
@@ -26,7 +26,7 @@ fn main() -> ! {
         esp_wifi::EspWifiInitFor::Wifi,
         timer,
         Rng::new(peripherals.RNG),
-        system.radio_clock_control,
+        peripherals.RADIO_CLK,
         &clocks,
     )
     .unwrap();
