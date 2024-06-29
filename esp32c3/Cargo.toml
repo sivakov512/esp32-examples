@@ -17,13 +17,13 @@ embedded-storage = "0.3"
 esp-storage = { version = "0.3", features = [ "esp32c3" ] }
 esp-println = { version = "0.9", features = ["esp32c3", "log"] }
 log = { version = "0.4" }
-esp-wifi = { version = "0.6.0", features = [
+esp-wifi = { version = "0.6", features = [
     "esp32c3",
     "wifi-default",
     "utils",
     "phy-enable-usb",
 ] }
-smoltcp = { version = "0.11.0", default-features = false, features = [
+smoltcp = { version = "0.11", default-features = false, features = [
     "proto-igmp",
     "proto-ipv4",
     "socket-tcp",
@@ -34,10 +34,10 @@ smoltcp = { version = "0.11.0", default-features = false, features = [
     "socket-raw",
     "socket-dhcpv4",
 ] }
-embedded-io = "0.6.1"
-heapless = { version = "0.8.0", default-features = false }
+embedded-io = "0.6"
+heapless = { version = "0.8", default-features = false }
 embedded-hal-nb = "1.0"
 nb = "1.1"
-
-[profile.dev.package.esp-storage]
-opt-level = 3
+embassy-executor = "0.5"
+embassy-time = "0.3"
+esp-hal-embassy = { version = "0.1" , features = [ "esp32c3", "time-timg0", "integrated-timers" ]}

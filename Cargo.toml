@@ -17,3 +17,6 @@ incremental = false
 lto = 'fat'
 opt-level = 's'
 overflow-checks = false
+
+[profile.dev.package.esp-storage]
+opt-level = 3
