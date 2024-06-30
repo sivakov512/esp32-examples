@@ -12,7 +12,7 @@ esp-backtrace = { version = "0.12", features = [
     "panic-handler",
     "println",
 ] }
-esp-hal = { version = "0.18", features = [ "esp32c3" ] }
+esp-hal = { version = "0.18", features = [ "esp32c3", "async" ] }
 embedded-storage = "0.3"
 esp-storage = { version = "0.3", features = [ "esp32c3" ] }
 esp-println = { version = "0.9", features = ["esp32c3", "log"] }
@@ -41,3 +41,5 @@ nb = "1.1"
 embassy-executor = "0.5"
 embassy-time = "0.3"
 esp-hal-embassy = { version = "0.1" , features = [ "esp32c3", "time-timg0", "integrated-timers" ]}
+embassy-sync = "0.6"
+embedded-io-async = "0.6"
