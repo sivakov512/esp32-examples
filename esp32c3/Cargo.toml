@@ -22,6 +22,9 @@ esp-wifi = { version = "0.6", features = [
     "wifi-default",
     "utils",
     "phy-enable-usb",
+    "smoltcp",
+    "embassy-net",
+    "async"
 ] }
 smoltcp = { version = "0.11", default-features = false, features = [
     "proto-igmp",
@@ -43,3 +46,5 @@ embassy-time = "0.3"
 esp-hal-embassy = { version = "0.1" , features = [ "esp32c3", "time-timg0", "integrated-timers" ]}
 embassy-sync = "0.6"
 embedded-io-async = "0.6"
+embassy-net = { version = "0.4", features = [ "tcp", "udp", "dhcpv4", "medium-ethernet" ] }
+static_cell = "2.1"
